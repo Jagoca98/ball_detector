@@ -10,3 +10,6 @@ build/
 devel/
 logs/
 misc/
+
+# Ros files
+*.bag
