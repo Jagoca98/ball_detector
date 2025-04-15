@@ -1,0 +1,8 @@
+# Vscode stuff
+.vscode/
+
+# Ros stuff
+.catkin_tools/
+build/
+devel/
+logs/
