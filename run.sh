@@ -19,8 +19,6 @@ set -o allexport
 : "${WORKSPACE:?Need to set WORKSPACE}"
 : "${DOCKER_IMAGE_NAME:?Need to set DOCKER_IMAGE_NAME}"
 
-        # -v ./data:/data/:ro \
-        # -v ./data/output:/data/output/:rw \
 # Generating the data inside a docker container
 echo "Generating the data..."
 if docker run \

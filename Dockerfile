@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     libopencv-dev \
     git \
+    ros-noetic-vision-msgs \
     sysvbanner \
     figlet
 
@@ -49,11 +50,6 @@ RUN python3 -m pip install --upgrade pip && \
     pip install onnxslim && \
     pip install onnxruntime && \
     pip install opencv-python
-
-USER root
-
-RUN apt update && apt install -y \
-    ros-noetic-vision-msgs 
 
 # Set the default entry point to start the ROS environment
 CMD ["tail", "-f", "/dev/null"]

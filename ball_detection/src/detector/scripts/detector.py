@@ -18,10 +18,11 @@ class BallDetectorNode:
 
         self.model = YOLO("/ball_detection/src/detector/weights/yolo11n.pt")
         self.ball_class_id = 32
+        self.confidence_threshold = 0.001
 
-        self.pub_image = rospy.Publisher('/ball_detector/image', Image, queue_size=10)
-        self.pub_detections = rospy.Publisher('/ball_detector/detections', Detection2DArray, queue_size=10)
-        rospy.Subscriber('/camera/image_raw', Image, self.image_callback)
+        self.pub_image = rospy.Publisher('/ball_detector/image', Image, queue_size=1)
+        self.pub_detections = rospy.Publisher('/ball_detector/detections', Detection2DArray, queue_size=1)
+        rospy.Subscriber('/camera/image_raw', Image, self.image_callback, queue_size=1)
 
         rospy.loginfo("BallDetectorNode is ready")
         rospy.spin()
@@ -35,7 +36,7 @@ class BallDetectorNode:
             rospy.logerr(f"cv_bridge error: {e}")
             return
 
-        results = self.model(frame, stream=True, conf=0.25)
+        results = self.model(frame, stream=True, conf=self.confidence_threshold)
 
         detection_array_msg = Detection2DArray()
         detection_array_msg.header = msg.header
