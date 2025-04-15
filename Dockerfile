@@ -49,7 +49,10 @@ RUN python3 -m pip install --upgrade pip && \
     pip install onnx && \
     pip install onnxslim && \
     pip install onnxruntime && \
-    pip install opencv-python
+    pip install opencv-python && \
+    pip install loguru && \
+    pip install lap && \
+    pip install cython_bbox
 
 # Set the default entry point to start the ROS environment
 CMD ["tail", "-f", "/dev/null"]

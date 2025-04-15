@@ -10,7 +10,12 @@ def main():
     pub = rospy.Publisher('/camera/image_raw', Image, queue_size=10)
     bridge = CvBridge()
 
-    cap = cv2.VideoCapture(0)
+    # cap = cv2.VideoCapture(0)
+    # Connect to an http webcam
+    cap = cv2.VideoCapture('http://192.168.1.101:8080/video')
+    if not cap.isOpened():
+        rospy.logerr("Could not open webcam")
+        return
     rospy.loginfo("Webcam driver started")
     rate = rospy.Rate(10)  # 10 Hz
 

@@ -89,9 +89,10 @@ class BallDetectorNode:
         if boxes is not None:
             for box, cls_id in zip(boxes.xyxy, boxes.cls):
                 if int(cls_id) == self.ball_class_id:
+                    # Draw bounding box
                     x1, y1, x2, y2 = map(int, box)
                     cv2.rectangle(frame_cp, (x1, y1), (x2, y2), (0, 255, 0), 2)
-                    cv2.putText(frame_cp, "ball", (x1, y1 - 10),
+                    cv2.putText(frame_cp, str(self.model.names[int(cls_id)]), (x1, y1 - 10),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
         return frame_cp
 
